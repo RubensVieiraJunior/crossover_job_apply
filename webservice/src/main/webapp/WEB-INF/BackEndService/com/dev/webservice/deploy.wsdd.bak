@@ -1,0 +1,29 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BackEndService WSDL service -->
+
+  <service name="BackEnd" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://webservice.dev.com"/>
+      <parameter name="wsdlServiceElement" value="BackEndService"/>
+      <parameter name="schemaQualified" value="http://webservice.dev.com"/>
+      <parameter name="wsdlServicePort" value="BackEnd"/>
+      <parameter name="className" value="com.dev.webservice.BackEndSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="BackEnd"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="save" qname="operNS:save" xmlns:operNS="http://webservice.dev.com" returnQName="retNS:saveReturn" xmlns:retNS="http://webservice.dev.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:jsonObject" xmlns:pns="http://webservice.dev.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="save"/>
+
+  </service>
+</deployment>

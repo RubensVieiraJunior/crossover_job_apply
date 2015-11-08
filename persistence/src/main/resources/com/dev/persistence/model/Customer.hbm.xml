@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/11/2015 15:13:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.dev.persistence.model.Customer" table="Customer" schema="cross">
+        <id name="cusCode" type="long">
+            <column name="Cus_Code" />
+            <generator class="increment" />
+        </id>
+        <property name="cusName" type="string">
+            <column name="Cus_Name" length="45" not-null="true" />
+        </property>
+        <property name="cusAddress" type="string">
+            <column name="Cus_Address" length="100" />
+        </property>
+        <property name="cusPhone1" type="string">
+            <column name="Cus_Phone1" length="15" />
+        </property>
+        <property name="cusPhone2" type="string">
+            <column name="Cus_Phone2" length="15" />
+        </property>
+        <property name="cusCreditLimit" type="big_decimal">
+            <column name="Cus_CreditLimit" precision="13" not-null="true" />
+        </property>
+        <property name="cusCurrentCredit" type="big_decimal">
+            <column name="Cus_CurrentCredit" precision="13" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

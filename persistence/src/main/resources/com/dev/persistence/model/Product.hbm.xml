@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/11/2015 15:13:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.dev.persistence.model.Product" table="Product" schema="cross">
+        <id name="prdCode" type="int">
+            <column name="Prd_Code" />
+            <generator class="increment" />
+        </id>
+        <property name="prdDescription" type="string">
+            <column name="Prd_Description" length="45" not-null="true" />
+        </property>
+        <property name="prdQuantity" type="int">
+            <column name="Prd_Quantity" not-null="true" />
+        </property>
+        <property name="prdPrice" type="big_decimal">
+            <column name="Prd_Price" precision="9" />
+        </property>
+    </class>
+</hibernate-mapping>
