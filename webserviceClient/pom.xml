@@ -25,4 +25,16 @@
 			</plugin>
 		</plugins>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis-jaxrpc</artifactId>
+			<version>1.4</version>
+		</dependency>
+	</dependencies>
 </project>
