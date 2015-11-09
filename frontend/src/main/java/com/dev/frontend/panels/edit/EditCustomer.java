@@ -7,6 +7,8 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import org.json.simple.JSONObject;
+
 import com.dev.frontend.services.Services;
 
 public class EditCustomer extends EditContentPanel 
@@ -133,21 +135,43 @@ public class EditCustomer extends EditContentPanel
 
 	public boolean bindToGUI(Object o) 
 	{
-		// TODO by the candidate
+		// TODO by the candidate (OK)
 		/*
 		 * This method use the object returned by Services.readRecordByCode and should map it to screen widgets 
 		 */
+		
+		JSONObject jsCustomer = (JSONObject)o;
+		txtCode.setText((String) jsCustomer.get("code"));
+		txtName.setText((String) jsCustomer.get("name"));
+		txtAddress.setText((String) jsCustomer.get("address"));
+		txtPhone1.setText((String) jsCustomer.get("phone1"));
+		txtPhone2.setText((String) jsCustomer.get("phone2"));
+		txtCreditLimit.setText((String) jsCustomer.get("creditLimit"));
+		txtCurrentCredit.setText((String) jsCustomer.get("currentCredit"));
+		
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Object guiToObject() 
 	{
-		// TODO by the candidate
+		// TODO by the candidate (OK)
 		/*
 		 * This method collect values from screen widgets and convert them to object of your type
 		 * This object will be used as a parameter of method Services.save
 		 */
-		return null;
+		String strCurrent = txtCurrentCredit.getText();
+		
+		JSONObject jsCustomer = new JSONObject();
+		jsCustomer.put("code", txtCode.getText());
+		jsCustomer.put("name", txtName.getText());
+		jsCustomer.put("address", txtAddress.getText());
+		jsCustomer.put("phone1", txtPhone1.getText());
+		jsCustomer.put("phone2", txtPhone2.getText());
+		jsCustomer.put("creditLimit", txtCreditLimit.getText());
+		jsCustomer.put("currentCredit", ( strCurrent.length()>0 ) ? strCurrent : "0");
+		
+		return jsCustomer;
 	}
 
 	@Override

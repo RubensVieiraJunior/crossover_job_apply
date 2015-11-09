@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.dev.frontend.panels.ComboBoxItem;
+import com.dev.webservice.BackEndInstance;
 
 public class Services 
 {
@@ -26,7 +27,8 @@ public class Services
 		 * object parameter is the return object from calling method guiToObject on edit screen
 		 * and the type is identifier of the object type and may be TYPE_PRODUCT ,
 		 * TYPE_CUSTOMER or TYPE_SALESORDER 
-		 */ 
+		 */
+//		BackEndInstance.proxy.save(jsonObject)
 		return null;
 	}
 	public static Object readRecordByCode(String code,int objectType)

@@ -7,6 +7,8 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import org.json.simple.JSONObject;
+
 import com.dev.frontend.services.Services;
 
 public class EditProduct extends EditContentPanel
@@ -81,21 +83,34 @@ public class EditProduct extends EditContentPanel
 
 	public boolean bindToGUI(Object o) 
 	{
-		// TODO by the candidate
+		// TODO by the candidate (OK)
 		/*
 		 * This method use the object returned by Services.readRecordByCode and should map it to screen widgets 
 		 */
+		JSONObject jsProduct = (JSONObject)o;
+		txtCode.setText((String) jsProduct.get("code"));
+        txtDescription.setText((String) jsProduct.get("description"));
+        txtPrice.setText((String) jsProduct.get("price"));
+        txtQuantity.setText((String) jsProduct.get("quantity"));
+        
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Object guiToObject() 
 	{
-		// TODO by the candidate
+		// TODO by the candidate (OK)
 		/*
 		 * This method collect values from screen widgets and convert them to object of your type
 		 * This object will be used as a parameter of method Services.save
 		 */
-		return null;
+		JSONObject jsProduct = new JSONObject();
+		jsProduct.put("code", txtCode.getText());
+		jsProduct.put("description", txtDescription.getText());
+		jsProduct.put("price", txtPrice.getText());
+		jsProduct.put("quantity", txtQuantity.getText());
+		
+		return jsProduct;
 	}
 
 	public int getObjectType()

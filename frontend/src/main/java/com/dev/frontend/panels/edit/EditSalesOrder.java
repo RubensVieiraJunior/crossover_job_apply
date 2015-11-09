@@ -6,7 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,6 +20,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.dev.frontend.panels.ComboBoxItem;
 import com.dev.frontend.services.Services;
@@ -212,21 +217,50 @@ public class EditSalesOrder extends EditContentPanel
 		txtTotalPrice.setText("" + currentValue);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public boolean bindToGUI(Object o) {
-		// TODO by the candidate
+		// TODO by the candidate (OK)
 		/*
 		 * This method use the object returned by Services.readRecordByCode and should map it to screen widgets 
 		 */
+		JSONObject jsSalesOrder = (JSONObject) o;
+		
+		Map mapCustomer = (Map) jsSalesOrder.get("customer");
+		
+		txtOrderNum.setText((String) jsSalesOrder.get("orderNum"));
+		txtTotalPrice.setText((String) jsSalesOrder.get("totalPrice"));
+		txtCustomer.setSelectedItem(mapCustomer.get("code"));
+		JSONArray jsOrderLines = (JSONArray) jsSalesOrder.get("orderLines");
+
+		for (Object objOrderLine : jsOrderLines) {
+			JSONObject jsOrderLine = (JSONObject) objOrderLine;
+			Map mapProduct = (Map) jsOrderLine.get("product");
+			defaultTableModel.addRow(new String[] { 
+					mapProduct.get("code").toString(), 
+					jsOrderLine.get("quantity").toString(),
+					jsOrderLine.get("unitPrice").toString(), 
+					jsOrderLine.get("totalPrice").toString() 
+					});
+		}
+
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Object guiToObject() {
-		// TODO by the candidate
+		// TODO by the candidate (OK)
 		/*
 		 * This method collect values from screen widgets and convert them to object of your type
 		 * This object will be used as a parameter of method Services.save
 		 */
-		return null;
+		JSONObject jsSalesOrder = new JSONObject();
+		jsSalesOrder.put("orderNum", txtOrderNum.getText());
+		jsSalesOrder.put("totalPrice", new BigDecimal(txtTotalPrice.getText()));
+		ComboBoxItem selectedItem = (ComboBoxItem) txtCustomer.getSelectedItem();
+		jsSalesOrder.put("customer", selectedItem.getKey());
+		jsSalesOrder.put("orderLines", new JSONArray());
+		
+		return jsSalesOrder;
 	}
 
 	public int getObjectType()
