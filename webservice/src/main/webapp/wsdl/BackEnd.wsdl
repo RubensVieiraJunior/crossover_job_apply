@@ -8,6 +8,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="jsonObject" type="xsd:string"/>
+      <element name="objectType" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -18,8 +19,68 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="listCurrentRecords">
+    <complexType>
+     <sequence>
+      <element name="objectType" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listCurrentRecordsResponse">
+    <complexType>
+     <sequence>
+      <element name="listCurrentRecordsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteRecordByCode">
+    <complexType>
+     <sequence>
+      <element name="code" type="xsd:string"/>
+      <element name="objectType" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteRecordByCodeResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteRecordByCodeReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="readRecordByCode">
+    <complexType>
+     <sequence>
+      <element name="code" type="xsd:string"/>
+      <element name="objectType" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="readRecordByCodeResponse">
+    <complexType>
+     <sequence>
+      <element name="readRecordByCodeReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
+
+   <wsdl:message name="deleteRecordByCodeResponse">
+
+      <wsdl:part element="impl:deleteRecordByCodeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listCurrentRecordsResponse">
+
+      <wsdl:part element="impl:listCurrentRecordsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
 
    <wsdl:message name="saveResponse">
 
@@ -29,9 +90,41 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="readRecordByCodeResponse">
+
+      <wsdl:part element="impl:readRecordByCodeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="readRecordByCodeRequest">
+
+      <wsdl:part element="impl:readRecordByCode" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="saveRequest">
 
       <wsdl:part element="impl:save" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteRecordByCodeRequest">
+
+      <wsdl:part element="impl:deleteRecordByCode" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listCurrentRecordsRequest">
+
+      <wsdl:part element="impl:listCurrentRecords" name="parameters">
 
       </wsdl:part>
 
@@ -46,6 +139,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:saveResponse" name="saveResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listCurrentRecords">
+
+         <wsdl:input message="impl:listCurrentRecordsRequest" name="listCurrentRecordsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listCurrentRecordsResponse" name="listCurrentRecordsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteRecordByCode">
+
+         <wsdl:input message="impl:deleteRecordByCodeRequest" name="deleteRecordByCodeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteRecordByCodeResponse" name="deleteRecordByCodeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="readRecordByCode">
+
+         <wsdl:input message="impl:readRecordByCodeRequest" name="readRecordByCodeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:readRecordByCodeResponse" name="readRecordByCodeResponse">
 
        </wsdl:output>
 
@@ -68,6 +197,60 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="saveResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listCurrentRecords">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listCurrentRecordsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listCurrentRecordsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteRecordByCode">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteRecordByCodeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteRecordByCodeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="readRecordByCode">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="readRecordByCodeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="readRecordByCodeResponse">
 
             <wsdlsoap:body use="literal"/>
 

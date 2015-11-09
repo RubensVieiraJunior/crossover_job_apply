@@ -7,12 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.dev.frontend.panels.ComboBoxItem;
-import com.dev.webservice.BackEndInstance;
 
 public class Services 
 {
 	
-	Logger logger = LoggerFactory.getLogger(Services.class);
+	private static Logger logger = LoggerFactory.getLogger(Services.class);
 	
 	public static final int TYPE_PRODUCT = 1;
 	public static final int TYPE_CUSTOMER = 2;
@@ -29,7 +28,8 @@ public class Services
 		 * TYPE_CUSTOMER or TYPE_SALESORDER 
 		 */
 //		BackEndInstance.proxy.save(jsonObject)
-		return null;
+		logger.info("Services.save:[" + object + "]");
+		return object;
 	}
 	public static Object readRecordByCode(String code,int objectType)
 	{
@@ -40,6 +40,7 @@ public class Services
 		 * the code parameter is the first column of the row you have selected
 		 * and the type is identifier of the object type and may be TYPE_PRODUCT ,
 		 * TYPE_CUSTOMER or TYPE_SALESORDER */ 
+		logger.info("Services.readRecordByCode:[" + code + "][" + objectType + "]");
 		return null;
 	}
 	public static boolean deleteRecordByCode(String code,int objectType)
@@ -51,6 +52,7 @@ public class Services
 		 * and the type is identifier of the object type and may be TYPE_PRODUCT ,
 		 * TYPE_CUSTOMER or TYPE_SALESORDER
 		 */ 
+		logger.info("Services.deleteRecordByCode:[" + code + "][" + objectType + "]");
 		return true;
 	}
 	
@@ -60,6 +62,7 @@ public class Services
 		/*
 		 * This method is called when you open any list screen and should return all records of the specified type
 		 */
+		logger.info("Services.listCurrentRecords:[" + objectType + "]");
 		return new ArrayList<Object>();
 	}
 	public static List<ComboBoxItem> listCurrentRecordRefernces(int objectType) 
@@ -69,6 +72,7 @@ public class Services
 		 * This method is called when a Combo Box need to be initialized and should
 		 * return list of ComboBoxItem which contains code and description/name for all records of specified type
 		 */
+		logger.info("Services.listCurrentRecordRefernces:[" + objectType + "]");
 		return new ArrayList<ComboBoxItem>();
 	}
 	public static double getProductPrice(String productCode) {
@@ -76,6 +80,7 @@ public class Services
 		/*
 		 * This method is used to get unit price of product with the code passed as a parameter
 		 */
+		logger.info("Services.getProductPrice:[" + productCode + "]");
 		return 1;
 	}
 }

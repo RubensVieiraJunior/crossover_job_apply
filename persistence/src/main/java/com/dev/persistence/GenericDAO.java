@@ -23,6 +23,8 @@ public interface GenericDAO<T, Type extends Serializable> {
 	public void delete(T entity);
 
 	public T findById(Serializable id);
+	
+	public T findByCode(String code);
 
 	public List<T> findAll();
 }

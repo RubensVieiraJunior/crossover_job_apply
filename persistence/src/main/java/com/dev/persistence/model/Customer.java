@@ -8,6 +8,8 @@ import java.math.BigDecimal;
  */
 public class Customer implements java.io.Serializable {
 
+	private static final long serialVersionUID = -6399419513889527335L;
+	
 	private long cusId;
 	private String cusCode;
 	private String cusName;

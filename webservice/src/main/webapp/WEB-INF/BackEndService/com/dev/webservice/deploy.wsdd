@@ -12,8 +12,20 @@
       <parameter name="typeMappingVersion" value="1.2"/>
       <operation xmlns:operNS="http://webservice.dev.com" xmlns:retNS="http://webservice.dev.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="save" qname="operNS:save" returnQName="retNS:saveReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://webservice.dev.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:jsonObject" type="tns:string"/>
+        <parameter xmlns:pns="http://webservice.dev.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:objectType" type="tns:int"/>
       </operation>
-      <parameter name="allowedMethods" value="save"/>
+      <operation xmlns:operNS="http://webservice.dev.com" xmlns:retNS="http://webservice.dev.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="listCurrentRecords" qname="operNS:listCurrentRecords" returnQName="retNS:listCurrentRecordsReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://webservice.dev.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:objectType" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://webservice.dev.com" xmlns:retNS="http://webservice.dev.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="deleteRecordByCode" qname="operNS:deleteRecordByCode" returnQName="retNS:deleteRecordByCodeReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://webservice.dev.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:code" type="tns:string"/>
+        <parameter xmlns:pns="http://webservice.dev.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:objectType" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://webservice.dev.com" xmlns:retNS="http://webservice.dev.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="readRecordByCode" qname="operNS:readRecordByCode" returnQName="retNS:readRecordByCodeReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://webservice.dev.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:code" type="tns:string"/>
+        <parameter xmlns:pns="http://webservice.dev.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:objectType" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="save readRecordByCode deleteRecordByCode listCurrentRecords"/>
 
   </service>
 </deployment>

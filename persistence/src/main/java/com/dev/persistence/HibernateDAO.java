@@ -49,7 +49,7 @@ public abstract class HibernateDAO<T, Type extends Serializable> implements Gene
 	public T findById(Serializable id) {
 		return (T) HibernateUtil.getSession().get(persistentClass, id);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
 		Session session = HibernateUtil.getSession();

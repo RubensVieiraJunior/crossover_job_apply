@@ -8,6 +8,8 @@ import java.math.BigDecimal;
  */
 public class SalesOrder implements java.io.Serializable {
 
+	private static final long serialVersionUID = 4248599773834944959L;
+	
 	private long sorId;
 	private String sorOrderNum;
 	private long sorCusId;
