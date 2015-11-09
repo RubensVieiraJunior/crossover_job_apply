@@ -5,7 +5,7 @@ package persistence;
 
 import java.math.BigDecimal;
 
-import org.hibernate.exception.ConstraintViolationException;
+import org.hibernate.PropertyValueException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,9 +13,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dev.persistence.CustomerDAO;
-import com.dev.persistence.CustomerImplDAO;
 import com.dev.persistence.HibernateUtil;
+import com.dev.persistence.dao.CustomerDAO;
+import com.dev.persistence.dao.CustomerImplDAO;
 import com.dev.persistence.model.Customer;
 
 import junit.framework.TestCase;
@@ -48,9 +48,10 @@ public class CustomerTest extends TestCase {
 
 	@Test
 	public void testInsertSuccess() {
-		String name = "Customer1";
+		String name = "Name1";
 		
 		Customer customer = new Customer();
+		customer.setCusCode("Cus1" + System.currentTimeMillis());
 		customer.setCusName(name);
 		customer.setCusCreditLimit(BigDecimal.ZERO);
 		customer.setCusCurrentCredit(BigDecimal.ZERO);
@@ -59,16 +60,17 @@ public class CustomerTest extends TestCase {
 		
 		HibernateUtil.getSession().flush();
 		
-		Long lngCustomer = customer.getCusCode();
+		Long lngCustomer = customer.getCusId();
 		customer = customerDao.findById(lngCustomer);
 		
 		assertEquals(name, customer.getCusName());
 	}
 	
 	public void testInsertError() {
-		String name = "Customer1";
+		String name = "Name1";
 		
 		Customer customer = new Customer();
+		customer.setCusCode("Cus1" + System.currentTimeMillis());
 		customer.setCusName(name);
 		customer.setCusCurrentCredit(BigDecimal.ZERO);
 
@@ -77,16 +79,17 @@ public class CustomerTest extends TestCase {
 			HibernateUtil.getSession().flush();
 			
 			Assert.fail();
-		} catch (ConstraintViolationException e) {
+		} catch (PropertyValueException e) {
 		}
 		
 	}
 	
 	public void testUpdateSuccess() {
-		String name = "Customer1";
+		String name = "Name1";
 		String newName = "Customer2";
 		
 		Customer customer = new Customer();
+		customer.setCusCode("Cus1" + System.currentTimeMillis());
 		customer.setCusName(name);
 		customer.setCusCreditLimit(BigDecimal.ZERO);
 		customer.setCusCurrentCredit(BigDecimal.ZERO);
@@ -95,7 +98,7 @@ public class CustomerTest extends TestCase {
 		
 		HibernateUtil.getSession().flush();
 		
-		Long lngCustomer = customer.getCusCode();
+		Long lngCustomer = customer.getCusId();
 		customer = customerDao.findById(lngCustomer);
 		
 		customer.setCusName(newName);
@@ -109,10 +112,11 @@ public class CustomerTest extends TestCase {
 	}
 
 	public void testUpdateError() {
-		String name = "Customer1";
+		String name = "Name1";
 		String newName = "Customer2";
 		
 		Customer customer = new Customer();
+		customer.setCusCode("Cus1" + System.currentTimeMillis());
 		customer.setCusName(name);
 		customer.setCusCreditLimit(BigDecimal.ZERO);
 		customer.setCusCurrentCredit(BigDecimal.ZERO);
@@ -121,7 +125,7 @@ public class CustomerTest extends TestCase {
 		
 		HibernateUtil.getSession().flush();
 		
-		Long lngCustomer = customer.getCusCode();
+		Long lngCustomer = customer.getCusId();
 		customer = customerDao.findById(lngCustomer);
 		
 		customer.setCusName(newName);
@@ -135,9 +139,10 @@ public class CustomerTest extends TestCase {
 	}
 	
 	public void testDeleteSuccess() {
-		String name = "Customer1";
+		String name = "Name1";
 		
 		Customer customer = new Customer();
+		customer.setCusCode("Cus1" + System.currentTimeMillis());
 		customer.setCusName(name);
 		customer.setCusCreditLimit(BigDecimal.ZERO);
 		customer.setCusCurrentCredit(BigDecimal.ZERO);
@@ -146,7 +151,7 @@ public class CustomerTest extends TestCase {
 		
 		HibernateUtil.getSession().flush();
 		
-		Long lngCustomer = customer.getCusCode();
+		Long lngCustomer = customer.getCusId();
 		customer = customerDao.findById(lngCustomer);
 		
 		customerDao.delete(customer);
@@ -159,9 +164,10 @@ public class CustomerTest extends TestCase {
 	}
 
 	public void testFindSuccess() {
-		String name = "Customer1";
+		String name = "Name1";
 		
 		Customer customer = new Customer();
+		customer.setCusCode("Cus1" + System.currentTimeMillis());
 		customer.setCusName(name);
 		customer.setCusCreditLimit(BigDecimal.ZERO);
 		customer.setCusCurrentCredit(BigDecimal.ZERO);
@@ -170,7 +176,7 @@ public class CustomerTest extends TestCase {
 		
 		HibernateUtil.getSession().flush();
 		
-		Long lngCustomer = customer.getCusCode();
+		Long lngCustomer = customer.getCusId();
 		customer = customerDao.findById(lngCustomer);
 		
 		assertNotNull(customer);

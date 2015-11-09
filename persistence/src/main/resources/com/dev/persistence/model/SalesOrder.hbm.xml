@@ -1,21 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 08/11/2015 15:13:11 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 09/11/2015 04:31:59 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.dev.persistence.model.SalesOrder" table="SalesOrder" schema="cross">
-        <id name="sorOrderNum" type="int">
-            <column name="Sor_OrderNum" />
+        <id name="sorId" type="long">
+            <column name="Sor_Id" />
             <generator class="increment" />
         </id>
-        <property name="sorCusCode" type="int">
-            <column name="Sor_Cus_Code" not-null="true" />
+        <property name="sorOrderNum" type="string">
+            <column name="Sor_OrderNum" length="20" not-null="true" unique="true" />
         </property>
-        <property name="sorDate" type="timestamp">
-            <column name="Sor_Date" length="19" not-null="true" />
-        </property>
-        <property name="sorQuantity" type="int">
-            <column name="Sor_Quantity" not-null="true" />
+        <property name="sorCusId" type="long">
+            <column name="Sor_Cus_Id" not-null="true" />
         </property>
         <property name="sorTotalPrice" type="big_decimal">
             <column name="Sor_TotalPrice" precision="13" not-null="true" />

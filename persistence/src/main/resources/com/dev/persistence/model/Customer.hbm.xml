@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 08/11/2015 15:13:11 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 09/11/2015 04:31:59 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="com.dev.persistence.model.Customer" table="Customer" schema="cross">
-        <id name="cusCode" type="long">
-            <column name="Cus_Code" />
+        <id name="cusId" type="long">
+            <column name="Cus_Id" />
             <generator class="increment" />
         </id>
+        <property name="cusCode" type="string">
+            <column name="Cus_Code" length="20" not-null="true" unique="true" />
+        </property>
         <property name="cusName" type="string">
-            <column name="Cus_Name" length="45" not-null="true" />
+            <column name="Cus_Name" length="100" not-null="true" />
         </property>
         <property name="cusAddress" type="string">
             <column name="Cus_Address" length="100" />

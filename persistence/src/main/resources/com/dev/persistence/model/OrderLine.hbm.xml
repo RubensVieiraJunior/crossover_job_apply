@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09/11/2015 04:31:59 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.dev.persistence.model.OrderLine" table="OrderLine" schema="cross">
+        <id name="oliId" type="long">
+            <column name="Oli_Id" />
+            <generator class="increment" />
+        </id>
+        <property name="oliSorId" type="long">
+            <column name="Oli_Sor_Id" not-null="true" />
+        </property>
+        <property name="oliPrdId" type="long">
+            <column name="Oli_Prd_Id" not-null="true" />
+        </property>
+        <property name="oliQuantity" type="int">
+            <column name="Oli_Quantity" not-null="true" />
+        </property>
+        <property name="oliUnitPrice" type="big_decimal">
+            <column name="Oli_UnitPrice" precision="9" not-null="true" />
+        </property>
+        <property name="oliTotalPrice" type="big_decimal">
+            <column name="Oli_TotalPrice" precision="11" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

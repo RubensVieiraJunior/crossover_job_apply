@@ -1,8 +1,9 @@
 /**
  * 
  */
-package com.dev.persistence;
+package com.dev.persistence.dao;
 
+import com.dev.persistence.HibernateDAO;
 import com.dev.persistence.model.Product;
 
 /**
